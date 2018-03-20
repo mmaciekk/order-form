@@ -1,0 +1,80 @@
+<form class="ui-g-12" [formGroup]="form">
+<!--pizza / sushi / pasta-->
+  <div class="ui-g-12" style="width: 350px;">
+    <div class="ui-g-4"><p-radioButton name="group1" value="Pizza" label="Pizza"  inputId="opt1"></p-radioButton></div>
+    <div class="ui-g-4"><p-radioButton name="group1" value="Sushi" label="Sushi" inputId="opt2"></p-radioButton></div>
+    <div class="ui-g-4"><p-radioButton name="group1" value="Pasta" label="Pasta"  inputId="opt3"></p-radioButton></div>
+  </div>
+<!--Delivery / I pick it up-->
+
+  <div class="ui-g-12">
+    <p-dropdown [options]="deliveryOptions" placeholder="Delivery / I pick it up"  FormControlName="delivery" [showClear]="true"></p-dropdown>
+  </div>
+  <!--delivery details-->
+  <div  formGroupName="deliveryDetails">
+    <h3 class="ui-g-12">Address:</h3>
+    <div class="ui-g-3 ui-input group">
+      <input class="ui-g-12"
+             id="city"
+             formControlName="username"
+             type="text"
+             pInputText
+             placeholder="City">
+      <input class="ui-g-12"
+             id="street"
+             formControlName="street"
+             type="text"
+             pInputText
+             placeholder="Street Name">
+      <input class="ui-g-12"
+             id="postcode"
+             formControlName="postcode"
+             type="text"
+             pInputText
+             placeholder="Postcode (12-345)">
+      <input class="ui-g-12"
+             id="number"
+             formControlName="number"
+             type="text"
+             pInputText
+             placeholder="Number">
+
+      <p-calendar formControlName="date" [showIcon]="true"></p-calendar> <span style="margin-left:35px"></span>
+
+
+    </div>
+  </div>
+
+  <div class="ui-g-6">
+      <!--Extras-->
+    <div formGroupName="extras" class="ui-g" style="width:250px;margin-bottom:10px">
+      <h3>Extras:</h3>
+      <div *ngFor="let extra of extras"  class="ui-g-12">
+        <p-checkbox [formControlName]="extra.value"  [label]="extra.label"></p-checkbox>
+      </div>
+    </div>
+    <!--Amount-->
+    <h3>Amount:</h3>
+    <div formGroupName="amount"   class="ui-g" *ngFor="let extra of extras" style="width:50px;margin-bottom:10px">
+    <p-spinner [size]="5" [formControlName]="extra.value" [min]="0" [max]="100"></p-spinner>
+    </div>
+  </div>
+
+  <!--Sushi Types-->
+  <div class="ui-g-12">
+    <p-dropdown [options]="foodTypes.sushiTypes" placeholder="Sushi Types"  formControlName="sushi" [showClear]="true"></p-dropdown>
+  </div>
+
+<!--Pizza Types-->
+  <div class="ui-g-12">
+    <p-dropdown [options]="foodTypes.pizzaTypes" placeholder="Pizza Types" formControlName="pizza" [showClear]="true"></p-dropdown>
+  </div>
+<!--Pasta Types  -->
+  <div class="ui-g-12">
+    <p-dropdown [options]="foodTypes.pastaTypes" placeholder="Pasta Types"  formControlName="pasta" [showClear]="true"></p-dropdown>
+  </div>
+
+
+</form>
+
+
